@@ -18,10 +18,40 @@
 
 #include <stdint.h>
 #include "stm32f1xx.h"
+#include "rcc.h"
+#include "gpio.h"
 
+#define myLEDport	GPIO_PORT_C
+#define myLEDpin	GPIO_PIN_13
 
 int main(void)
 {
-    /* Loop forever */
-	for(;;);
+    F1_System_Init(HSE_72MHZ, SYSTICK_1KHZ);
+    F1_GPIO_Pin_Setup_OUT(GPIO_PORT_C, GPIO_PIN_13, GPIO_OUTPUT_10MHZ, GPIO_OUTPUT_PP);
+    while(1)
+    {
+	F1_GPIO_Pin_Toggle(GPIO_PORT_C, GPIO_PIN_13);
+	F1_delay_ms(1000);
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
