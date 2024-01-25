@@ -93,10 +93,45 @@ extern uint32_t Systic_delay_counter;
  void F1_delay_us(uint16_t us);
 
 
+/*
+ * @brief:
+ * 	Return the System clock frequency
+ * @arg:
+ * 	None
+ * @Return:
+ *	uint32_t	System Clock frequency
+ */
+uint32_t F1_RCC_get_sys_clock(void);
 
+/*
+ * @brief:
+ * 	Return the SysTick clock frequency
+ * @arg:
+ * 	None
+ * @Return:
+ *	uint32_t	SysTick Clock frequency
+ */
+uint32_t F1_RCC_get_sysTick_clock(void);
 
+/*
+ * @brief:
+ * 	Return the APB1 clock frequency
+ * @arg:
+ * 	None
+ * @Return:
+ *	uint32_t	APB1 Clock frequency
+ */
+uint32_t F1_RCC_get_APB1_clock(void);
 
-
+/*
+ * @brief:
+ * 	Return the APB2 clock frequency
+ * @arg:
+ * 	None
+ * @Return:
+ *	uint32_t	APB2 Clock frequency
+ */
+uint32_t F1_RCC_get_APB2_clock(void);
 
 
 

@@ -139,9 +139,36 @@ void F1_delay_us(uint16_t us)
     while(Systic_delay_counter < counts_needed);
 }
 
+/*
+ * Return the clock of APB2
+ */
+uint32_t F1_RCC_get_APB2_clock(void)
+{
+    return rccConfig.APB2_freq;
+}
 
+/*
+ * Return the clock of APB1
+ */
+uint32_t F1_RCC_get_APB1_clock(void)
+{
+    return rccConfig.APB1_freq;
+}
 
+/*
+ * Return the clock of the SystTick timer
+ */
+uint32_t F1_RCC_get_sysTick_clock(void)
+{
+    return rccConfig.systick_freq;
+}
 
-
+/*
+ * Return the clock frequency of the System
+ */
+uint32_t F1_RCC_get_sys_clock(void)
+{
+    return rccConfig.clock_freq;
+}
 
 
