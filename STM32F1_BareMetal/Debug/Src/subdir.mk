@@ -5,7 +5,9 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Src/adc.c \
 ../Src/gpio.c \
+../Src/interrupts.c \
 ../Src/main.c \
 ../Src/rcc.c \
 ../Src/syscalls.c \
@@ -13,7 +15,9 @@ C_SRCS += \
 ../Src/uart.c 
 
 OBJS += \
+./Src/adc.o \
 ./Src/gpio.o \
+./Src/interrupts.o \
 ./Src/main.o \
 ./Src/rcc.o \
 ./Src/syscalls.o \
@@ -21,7 +25,9 @@ OBJS += \
 ./Src/uart.o 
 
 C_DEPS += \
+./Src/adc.d \
 ./Src/gpio.d \
+./Src/interrupts.d \
 ./Src/main.d \
 ./Src/rcc.d \
 ./Src/syscalls.d \
@@ -36,7 +42,7 @@ Src/%.o Src/%.su Src/%.cyclo: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/gpio.cyclo ./Src/gpio.d ./Src/gpio.o ./Src/gpio.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/rcc.cyclo ./Src/rcc.d ./Src/rcc.o ./Src/rcc.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/uart.cyclo ./Src/uart.d ./Src/uart.o ./Src/uart.su
+	-$(RM) ./Src/adc.cyclo ./Src/adc.d ./Src/adc.o ./Src/adc.su ./Src/gpio.cyclo ./Src/gpio.d ./Src/gpio.o ./Src/gpio.su ./Src/interrupts.cyclo ./Src/interrupts.d ./Src/interrupts.o ./Src/interrupts.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/rcc.cyclo ./Src/rcc.d ./Src/rcc.o ./Src/rcc.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/uart.cyclo ./Src/uart.d ./Src/uart.o ./Src/uart.su
 
 .PHONY: clean-Src
 

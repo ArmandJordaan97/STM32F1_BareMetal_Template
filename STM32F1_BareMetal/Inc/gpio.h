@@ -107,6 +107,18 @@ typedef enum{
  }F1_gpio_status_t;
 
 
+/*
+ * ********************************************************************************
+ * USER DEFINES
+ * ********************************************************************************
+ */
+#define myLEDport	GPIO_PORT_C
+#define myLEDpin	GPIO_PIN_13
+
+#define myButtonPort	GPIO_PORT_B
+#define myButtonPin	GPIO_PIN_0
+
+
  /*
   * ********************************************************************************
   * Functions

@@ -21,28 +21,12 @@
 #include "stm32f1xx.h"
 #include "rcc.h"
 #include "gpio.h"
+#include "adc.h"
 #include "uart.h"
 
-#define myLEDport	GPIO_PORT_C
-#define myLEDpin	GPIO_PIN_13
 
-#define myButtonPort	GPIO_PORT_B
-#define myButtonPin	GPIO_PIN_0
 
-void EXTI0_IRQHandler(void)
-{
-    EXTI->PR |= (1 << myButtonPin);
-    F1_GPIO_Pin_Toggle(GPIO_PORT_C, GPIO_PIN_13);
-}
 
-void USART1_IRQHandler(void)
-{
-    if(USART1->SR &= USART_SR_RXNE)
-    {
-	char rec_data = USART1->DR;
-	F1_UART_send_char(UART_1, rec_data);
-    }
-}
 
 
 
@@ -53,16 +37,22 @@ int main(void)
     F1_GPIO_Pin_Setup_INPUT(myButtonPort, myButtonPin, GPIO_INPUT_PU);
     F1_GPIO_Pin_Conf_EXTI(myButtonPort, myButtonPin, GPIO_INPUT_EXTI_EN, GPIO_INPUT_EXTI_TRIG_FALL);
     F1_UART_Init(UART_3, UART_BAUD_115200, UART3_TX_PB10_RX_PB11);
+    F1_ADC_Initialize(ADC_2);
+    F1_ADC_Initialize(ADC_1);
 
-    char buff[30] = {'\0'};
-    int t = 0;
+
+//    char buff[30] = {'\0'};
+//    uint16_t adcDat = 0;
+
     while(1)
     {
-	sprintf(buff, "%d Val\n\r", t);
-	t+=1;
-	F1_UART_send_string(UART_3, buff);
+	F1_ADC_Start_DMA_ADC1(ADC_CH_1, dmaBuf, MAX_DMA_BUFFER);
+	F1_ADC_Start_Conversion_IT(ADC_2, ADC_CH_2);
+//	adcDat = F1_ADC_get_Data_Blocking(ADC_2, ADC_CH_1);
+//	sprintf(buff, "ADC Pol = %d\n\r", adcDat);
+//	F1_UART_send_string(UART_3, buff);
 	F1_GPIO_Pin_Toggle(GPIO_PORT_C, GPIO_PIN_13);
-	F1_delay_ms(1000);
+	F1_delay_ms(100);
 
     }
 }
